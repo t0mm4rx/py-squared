@@ -14,3 +14,4 @@
 - [ ] Node: think about refactoring the code, sub-classes? metaprogramming?
 - [ ] Docstrings: better comments
 - [ ] Tests: test sample mains and compare with actual python output, to make sure we don't have regressions
+- [ ] Compile script: add options to the script, handle exceptions
