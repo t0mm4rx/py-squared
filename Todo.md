@@ -1,33 +1,16 @@
 # Features
-- type: int
-- variable assignation and access
-- function definition
-- if, while
-- print
+- [x] print function with int argument
+- [x] declare and assign values to int
+- [ ] if block
+- [ ] while block
+- [ ] function declaration
 
-# Steps
-
-- parse / lexing the source codes
-- abstract syntax tree
-- AST -> C, compilation or transpilation
-- C -> Binary, handled by gcc
-
--> Done
-
-# Tokens
-
-- string litterals ("print")
-- open parenthesis "("
-- close parenthesis ")"
-- integer litterals ("12")
-
-
-# Memory
-
-- array to store memory slots
-- data structure: address, variable_name, type
-- create variables
-- delete variables and perform the cleanup
-
-- variable assignation
-- variable referencing / read
+# To fix
+- [ ] Functions and assignation: parse multiple tokens
+- [ ] Invalid Statement: pretty error message with line number and token position
+- [ ] Tokenization: token position fix (currently end of the token, should be at the beginning)
+- [ ] ReadMe
+- [ ] Variable management: fix "int", maybe we should have multiple types?
+- [ ] Node: think about refactoring the code, sub-classes? metaprogramming?
+- [ ] Docstrings: better comments
+- [ ] Tests: test sample mains and compare with actual python output, to make sure we don't have regressions
