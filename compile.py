@@ -1,7 +1,7 @@
 """Compile the given file with given options."""
 from argparse import ArgumentParser
 from src.tokenization import tokenize
-from src.ast import tokens_to_ast, print_ast
+from src.abstract_syntax_tree import tokens_to_ast, print_ast
 from src.compilation import compile_ast, compile_c_output
 
 parser = ArgumentParser(prog="Py-squared compiler")

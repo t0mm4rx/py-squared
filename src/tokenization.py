@@ -8,10 +8,13 @@ from dataclasses import dataclass
 
 class TokenTypes(Enum):
     """All different token types."""
+    BREAK_LINE          = auto()
     OPEN_PARENTHESIS    = auto()
     CLOSE_PARENTHESIS   = auto()
     STR_LITERAL         = auto()
     INT_LITERAL         = auto()
+    COLON               = auto()
+    EQUAL               = auto()
 
 @dataclass
 class Token:
@@ -24,6 +27,8 @@ class Token:
 text_to_tokens: dict[str, TokenTypes] = {
     "(": TokenTypes.OPEN_PARENTHESIS,
     ")": TokenTypes.CLOSE_PARENTHESIS,
+    ":": TokenTypes.COLON,
+    "=": TokenTypes.EQUAL,
 }
 
 def starts_with_token(code: str) -> TokenTypes | None:
@@ -60,6 +65,7 @@ def tokenize(source_code: str) -> list[Token]:
 
             if token_type:
                 if len(literal_buffer) > 0:
+                    literal_buffer = literal_buffer.strip()
                     tokens.append(Token(
                         token_type=get_literal_token_type(literal_buffer),
                         value=literal_buffer,
@@ -79,11 +85,19 @@ def tokenize(source_code: str) -> list[Token]:
             cursor += 1
 
         if len(literal_buffer) > 0:
+            literal_buffer = literal_buffer.strip()
             tokens.append(Token(
                 token_type=get_literal_token_type(literal_buffer),
                 value=literal_buffer,
                 line_position=liner_number,
                 row_position=cursor,
             ))
+
+        tokens.append(Token(
+            token_type=TokenTypes.BREAK_LINE,
+            value=None,
+            line_position=liner_number,
+            row_position=cursor,
+        ))
 
     return tokens
