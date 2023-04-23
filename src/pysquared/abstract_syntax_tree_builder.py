@@ -8,6 +8,10 @@ from .abstract_syntax_tree import get_token_type
 class InvalidStatement(Exception):
     """The current statement/expression is not recognized."""
 
+    def __init__(self, token: Token) -> None:
+        self.message = f"Syntax error on line {token.line_position}, row {token.row_position}"
+        super().__init__(self.message)
+
 def match_node(
         parent_node: ASTNode,
         tokens: list[Token],
@@ -20,7 +24,7 @@ def match_node(
         result = node_type.match(tokens, parent_node)
         if result:
             return result
-    raise InvalidStatement()
+    raise InvalidStatement(tokens[0])
 
 def tokens_to_ast(tokens: list[Token], parent_node: ASTNode | None = None) -> ASTNode:
     """Transform a list of tokens into an AST."""

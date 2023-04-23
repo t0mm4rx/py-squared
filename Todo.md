@@ -13,7 +13,7 @@
 - [x] Variable management: fix "int", maybe we should have multiple types?
 - [x] Package the library
 - [x] Compile script: add options to the script, handle exceptions
-- [ ] Invalid Statement: pretty error message with line number and token position
+- [x] Invalid Statement: pretty error message with line number and token position
 - [ ] Tokenization: token position fix (currently end of the token, should be at the beginning)
 - [ ] ReadMe
 - [ ] Tests: test sample mains and compare with actual python output, to make sure we don't have regressions
