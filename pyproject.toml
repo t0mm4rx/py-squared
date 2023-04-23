@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pysquared"
+version = "0.0.1"
+authors = [
+  { name="Tom Marx", email="tom@tommarx.fr" },
+]
+description = "A Python compiler, written in Python"
+readme = "ReadMe.md"
+requires-python = ">=3.7"

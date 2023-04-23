@@ -1,8 +1,9 @@
 """Compile the given file with given options."""
 from argparse import ArgumentParser
-from src.tokenization import tokenize
-from src.abstract_syntax_tree import tokens_to_ast, print_ast
-from src.compilation import compile_ast, compile_c_output
+# from pysquared. import tokenize, tokens_to_ast, compile_ast, compile_c_output
+from pysquared.tokenization import tokenize
+from pysquared.abstract_syntax_tree_builder import tokens_to_ast
+from pysquared.compilation import compile_ast, compile_c_output
 
 parser = ArgumentParser(prog="Py-squared compiler")
 parser.add_argument("filename")
@@ -13,7 +14,7 @@ def main():
     with open(args.filename, "r", encoding="utf-8") as file:
         tokens = tokenize(file.read())
         ast = tokens_to_ast(tokens)
-        print_ast(ast)
+        ast.print_tree()
 
         compile_c_output(compile_ast(ast), "print")
 
