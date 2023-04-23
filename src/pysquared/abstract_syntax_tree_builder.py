@@ -30,7 +30,6 @@ def tokens_to_ast(tokens: list[Token], parent_node: ASTNode | None = None) -> AS
         parent_node = Entrypoint()
 
     while cursor < len(tokens):
-        print(cursor, tokens[cursor])
         new_node, to_skip = match_node(parent_node, tokens[cursor:])
         if new_node is not None:
             parent_node.children.append(new_node)

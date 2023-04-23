@@ -13,24 +13,14 @@ def compile_ast(node: ASTNode) -> str:
         main = main.replace("// %%main", node.compile())
         return main
 
-def compile_c_output(c_source: str, binary_name: str):
+def compile_c_output(c_source: str, binary_name: str, fsanitize: bool = False):
     """Compile the given C source code into a binary."""
     os.system("mkdir -p build")
-    with open("./build/output.c", "w+", encoding="utf-8") as file:
+    c_file_name = binary_name + ".c"
+    with open(c_file_name, "w+", encoding="utf-8") as file:
         file.write(c_source)
-    os.system(f"gcc ./build/output.c -o ./build/{binary_name} -g3 -fsanitize=address")
-
-# def compile_variable_declaration(node: Node) -> str:
-#     """Compile NodeTypes.VARIABLE_DECLARATION."""
-#     if node.variable_type == "int":
-#         new_index = register_variable(node.value, node.variable_type)
-#         return f"""
-#         reserve_slot({new_index}, 8);
-#         *((int*)memory_slots[{new_index}]) = {compile_node(node.children[0])};
-#         """
-#     raise NoCompilerImplemented()
-
-# def compile_variable_reference(node: Node) -> str:
-#     """Compile NodeTypes.VARIABLE_REFERENCE."""
-#     variable = get_variable(name=node.value)
-#     return f"*(({variable.type}*)memory_slots[{variable.index}])"
+    print((f"gcc {c_file_name} -o {binary_name}"
+           " -Wall -Werror -Wextra "
+           f"{'-g3 -fsanitize=address' if fsanitize else ''}"
+        ))
+    os.system(f"gcc {c_file_name} -o {binary_name} {'-g3 -fsanitize=address' if fsanitize else ''}")
