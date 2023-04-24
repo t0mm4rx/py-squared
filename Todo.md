@@ -3,9 +3,10 @@
 - [x] declare and assign values to int
 - [ ] if block
 - [ ] while block
-- [ ] function declaration
 - [ ] memory management
 - [ ] syscall bindings / wrapper
+- [ ] function declaration
+- [ ] code import (`import` statement)
 
 # To fix
 - [x] Node: think about refactoring the code, sub-classes? metaprogramming?
